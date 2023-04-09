@@ -13,13 +13,16 @@ Interface::Interface(std::vector<Rotor> const& rotors, std::vector<Plug> const& 
 
 char Interface::Encode(char a)
 {
-    a = rotors.at(0).Encode(a);
-    a = rotors.at(1).Encode(a);
-    a = rotors.at(2).Encode(a);
+    for (auto & rotor : rotors)
+    {
+        a = rotor.Encode(a);
+    }
     a = reflector.Encode(a);
-    a = rotors.at(2).EncodeBack(a);
-    a = rotors.at(1).EncodeBack(a);
-    a = rotors.at(0).EncodeBack(a);
+
+    for (size_t i{rotors.size()}; i > 0; --i)
+    {
+        a = rotors.at(i - 1).EncodeBack(a);
+    }
 
     Rotate();
 
