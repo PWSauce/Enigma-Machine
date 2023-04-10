@@ -14,6 +14,22 @@ Interface::Interface(std::vector<Rotor> const& rotors, std::vector<Plug> const& 
 
 char Interface::Encode(char a)
 {
+    for (Plug & b : plugs)
+    {
+        std::string p {b.Get_Conn()};
+
+        if (p.at(0) == a)
+        {
+            a = p.at(1);
+            break;
+        }
+        if (p.at(1) == a)
+        {
+            a = p.at(0);
+            break;
+        }
+    }
+
     Rotate();
 
     a = rotors.at(2).Encode(a);
@@ -24,6 +40,22 @@ char Interface::Encode(char a)
     a = rotors.at(1).EncodeBack(a);
     a = rotors.at(2).EncodeBack(a);
 
+    for (Plug & b : plugs)
+    {
+        std::string p {b.Get_Conn()};
+
+        if (p.at(0) == a)
+        {
+            a = p.at(1);
+            break;
+        }
+        if (p.at(1) == a)
+        {
+            a = p.at(0);
+            break;
+        }
+    }
+
     return a;
 }
 
@@ -32,11 +64,9 @@ void Interface::SetStartPos(std::string pos)
     int idx{};
     for (char c : pos)
     {
-        //std::cout << c << std::endl;
         rotors.at(idx).SetPosition(c);
         ++idx;
     }
-    std::cout << std::endl;
     
 }
 
