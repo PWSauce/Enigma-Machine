@@ -12,6 +12,7 @@ public:
     char Encode(char in);
     char EncodeBack(char in);
     char Position() const;
+    void SetPosition(char pos);
 
     void Print() const;
 private:

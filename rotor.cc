@@ -78,7 +78,12 @@ char Rotor::EncodeBack(char in)
 
 char Rotor::Position() const
 {
-    return out.at(0);
+    return pos;
+}
+
+void Rotor::SetPosition(char p)
+{
+    pos = p;
 }
 
 void Rotor::Print() const

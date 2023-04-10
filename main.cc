@@ -20,8 +20,14 @@ int main()
     std::string message{};
     std::string decoded{};
 
-    std::cin >> message;
+    std::cout << "Write rotor start positions: " << std::endl;
+    std::cin >> c;
+    m1.SetStartPos(c);
 
+    std::cout << "Write messsage: " << std::endl;
+    std::cin >> message;
+    
+    c.clear();
     for (auto a : message)
     {
         c += m1.Encode(a);
@@ -29,7 +35,6 @@ int main()
     
     std::cout << std::endl;
     std::cout << c << std::endl;
-    //refl.Print();
 
     return 0;
 }

@@ -1,6 +1,7 @@
 #include "interface.h"
 #include <vector>
 #include <string>
+#include <sstream>
 #include <iostream>
 
 Interface::Interface(std::vector<Rotor> const& rotors, Rotor const& refl)
@@ -23,14 +24,20 @@ char Interface::Encode(char a)
     a = rotors.at(1).EncodeBack(a);
     a = rotors.at(2).EncodeBack(a);
 
-    std::cout << "Encoded: " << a << std::endl;
-
     return a;
 }
 
 void Interface::SetStartPos(std::string pos)
 {
-
+    int idx{};
+    for (char c : pos)
+    {
+        //std::cout << c << std::endl;
+        rotors.at(idx).SetPosition(c);
+        ++idx;
+    }
+    std::cout << std::endl;
+    
 }
 
 void Interface::SetPlugs(std::string plugs)
@@ -42,10 +49,8 @@ void Interface::Rotate()
 {
     if (rotors.at(2).Rotate())
     {
-        std::cout << "Yes" << std::endl;
         if (rotors.at(1).Rotate())
         {
-            std::cout << "Yes2" << std::endl;
             rotors.at(0).Rotate();
         }
     }
