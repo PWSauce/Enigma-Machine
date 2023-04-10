@@ -13,18 +13,17 @@ Interface::Interface(std::vector<Rotor> const& rotors, std::vector<Plug> const& 
 
 char Interface::Encode(char a)
 {
-    for (auto & rotor : rotors)
-    {
-        a = rotor.Encode(a);
-    }
-    a = reflector.Encode(a);
-
-    for (size_t i{rotors.size()}; i > 0; --i)
-    {
-        a = rotors.at(i - 1).EncodeBack(a);
-    }
-
     Rotate();
+
+    a = rotors.at(2).Encode(a);
+    a = rotors.at(1).Encode(a);
+    a = rotors.at(0).Encode(a);
+    a = reflector.Encode(a);
+    a = rotors.at(0).EncodeBack(a);
+    a = rotors.at(1).EncodeBack(a);
+    a = rotors.at(2).EncodeBack(a);
+
+    std::cout << "Encoded: " << a << std::endl;
 
     return a;
 }
@@ -41,11 +40,13 @@ void Interface::SetPlugs(std::string plugs)
 
 void Interface::Rotate()
 {
-    if (rotors.at(0).Rotate())
+    if (rotors.at(2).Rotate())
     {
+        std::cout << "Yes" << std::endl;
         if (rotors.at(1).Rotate())
         {
-            rotors.at(2).Rotate();
+            std::cout << "Yes2" << std::endl;
+            rotors.at(0).Rotate();
         }
     }
 }

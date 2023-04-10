@@ -7,11 +7,11 @@
 int main()
 {
     //                           ABCDEFGHIJKLMNOPQRSTUVWXYZ
-    std::vector<Rotor> r {Rotor{"BDFHJLCPRTXVZNYEIWGAKMUSQO"}, 
-                          Rotor{"AJDKSIRUXBLHWTMCQGZNPYFVOE"}, 
-                          Rotor{"EKMFLGDQVZNTOWYHXUSPAIBRCJ"}};
+    std::vector<Rotor> r {Rotor{"EKMFLGDQVZNTOWYHXUSPAIBRCJ", 'A'}, 
+                          Rotor{"AJDKSIRUXBLHWTMCQGZNPYFVOE", 'A'}, 
+                          Rotor{"BDFHJLCPRTXVZNYEIWGAKMUSQO", 'A'}};
 
-    Rotor refl {"YRUHQSLDPXNGOKMIEBFZCWVJAT"};
+                    Rotor refl {"YRUHQSLDPXNGOKMIEBFZCWVJAT", 'A'};
 
     Interface m1 {r, refl};
     Interface m2 {r, refl};
@@ -22,23 +22,14 @@ int main()
 
     std::cin >> message;
 
-    for (auto const& a : message)
+    for (auto a : message)
     {
-        char b = m1.Encode(a);
-        c += b;
-    }
-
-    std::cout << c << std::endl;
-
-    for (auto const& a : c)
-    {
-        decoded += m2.Encode(a);
+        c += m1.Encode(a);
     }
     
     std::cout << std::endl;
-    std::cout << decoded << std::endl;
-
-    m1.Print();
+    std::cout << c << std::endl;
+    //refl.Print();
 
     return 0;
 }

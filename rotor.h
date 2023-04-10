@@ -6,7 +6,7 @@
 class Rotor
 {
 public:
-    Rotor(std::string out);
+    Rotor(std::string out, char pos);
 
     bool Rotate();
     char Encode(char in);
@@ -15,8 +15,8 @@ public:
 
     void Print() const;
 private:
-    std::string out;
-    char startPos;
+    std::string const out;
+    char pos;
 };
 
 #endif // ROTOR_H
