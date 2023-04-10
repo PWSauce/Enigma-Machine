@@ -17,6 +17,7 @@ int main()
     Interface m2 {r, refl};
 
     std::string c{};
+    std::string plugs{};
     std::string message{};
     std::string decoded{};
 
@@ -24,9 +25,16 @@ int main()
     std::cin >> c;
     m1.SetStartPos(c);
 
+    std::cout << "Write plugs in AB format separated with blankspaces:" << std::endl;
+    std::cin >> plugs;
+    std::getline(std::cin, c, '\n');
+    plugs += c;
+    std::cout << plugs << std::endl;
+    m1.SetPlugs(plugs);
+    
     std::cout << "Write messsage: " << std::endl;
     std::cin >> message;
-    
+
     c.clear();
     for (auto a : message)
     {

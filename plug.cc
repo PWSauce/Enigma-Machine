@@ -1,5 +1,6 @@
 #include "plug.h"
 #include <string>
+#include <iostream>
 
 Plug::Plug()
     : a(), b()
@@ -19,7 +20,8 @@ Plug::Plug(std::string connections)
 std::string Plug::Get_Conn() const
 {
     std::string s{};
-    s = a + '-' + b;
+    s.push_back(a);
+    s.push_back(b);
 
     return s;
 }

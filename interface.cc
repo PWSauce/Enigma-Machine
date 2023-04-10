@@ -40,9 +40,15 @@ void Interface::SetStartPos(std::string pos)
     
 }
 
-void Interface::SetPlugs(std::string plugs)
+void Interface::SetPlugs(std::string pl)
 {
+    std::stringstream ss {pl};
+    std::string p {};
 
+    while(getline(ss, p, ' '))
+    {
+        plugs.push_back(Plug(p.at(0), p.at(1)));
+    }
 }
 
 void Interface::Rotate()
