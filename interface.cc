@@ -5,7 +5,7 @@
 #include <iostream>
 
 Interface::Interface(std::vector<Rotor> const& rotors, Rotor const& refl)
-    : rotors(rotors), reflector(refl)
+    : rotors(rotors), plugs(), reflector(refl)
 {}
 
 Interface::Interface(std::vector<Rotor> const& rotors, std::vector<Plug> const& plugs, Rotor const& refl)
@@ -14,52 +14,29 @@ Interface::Interface(std::vector<Rotor> const& rotors, std::vector<Plug> const& 
 
 char Interface::Encode(char a)
 {
-    for (Plug & b : plugs)
-    {
-        std::string p {b.Get_Conn()};
-
-        if (p.at(0) == a)
-        {
-            a = p.at(1);
-            break;
-        }
-        if (p.at(1) == a)
-        {
-            a = p.at(0);
-            break;
-        }
-    }
+    a = PlugChange(a);
 
     Rotate();
 
-    a = rotors.at(2).Encode(a);
-    a = rotors.at(1).Encode(a);
-    a = rotors.at(0).Encode(a);
-    a = reflector.Encode(a);
-    a = rotors.at(0).EncodeBack(a);
-    a = rotors.at(1).EncodeBack(a);
-    a = rotors.at(2).EncodeBack(a);
-
-    for (Plug & b : plugs)
+    for (int i{static_cast<int>(rotors.size()) - 1}; i >= 0; --i)
     {
-        std::string p {b.Get_Conn()};
-
-        if (p.at(0) == a)
-        {
-            a = p.at(1);
-            break;
-        }
-        if (p.at(1) == a)
-        {
-            a = p.at(0);
-            break;
-        }
+        a = rotors.at(i).Encode(a);
     }
+    a = reflector.Encode(a);
+    for (int i{}; i < static_cast<int>(rotors.size()); ++i)
+    {
+        a = rotors.at(i).Encode(a);
+    }
+    // a = rotors.at(0).EncodeBack(a);
+    // a = rotors.at(1).EncodeBack(a);
+    // a = rotors.at(2).EncodeBack(a);
+
+    a = PlugChange(a);
 
     return a;
 }
 
-void Interface::SetStartPos(std::string pos)
+void Interface::SetStartPos(std::string const& pos)
 {
     int idx{};
     for (char c : pos)
@@ -70,7 +47,7 @@ void Interface::SetStartPos(std::string pos)
     
 }
 
-void Interface::SetPlugs(std::string pl)
+void Interface::SetPlugs(std::string const& pl)
 {
     std::stringstream ss {pl};
     std::string p {};
@@ -90,6 +67,27 @@ void Interface::Rotate()
             rotors.at(0).Rotate();
         }
     }
+}
+
+char Interface::PlugChange(char c)
+{
+    for (Plug & b : plugs)
+    {
+        std::string p {b.Get_Conn()};
+
+        if (p.at(0) == c)
+        {
+            c = p.at(1);
+            break;
+        }
+        if (p.at(1) == c)
+        {
+            c = p.at(0);
+            break;
+        }
+    }
+
+    return c;
 }
 
 void Interface::Print() const

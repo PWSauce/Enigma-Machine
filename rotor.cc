@@ -43,7 +43,7 @@ char Rotor::Encode(char in)
 
 char Rotor::EncodeBack(char in)
 {
-    int idx{};
+    size_t idx{};
     char a{};
     int position{pos - 'A'};
 

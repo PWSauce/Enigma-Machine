@@ -29,16 +29,20 @@ int main()
     std::cin >> plugs;
     std::getline(std::cin, c, '\n');
     plugs += c;
-    std::cout << plugs << std::endl;
     m1.SetPlugs(plugs);
     
     std::cout << "Write messsage: " << std::endl;
     std::cin >> message;
+    std::getline(std::cin, c, '\n');
+    message += c;
 
     c.clear();
     for (auto a : message)
     {
-        c += m1.Encode(a);
+        if (a != ' ')
+            c += m1.Encode(a);
+        else
+            c += ' ';
     }
     
     std::cout << std::endl;

@@ -13,14 +13,15 @@ public:
 
     char Encode(char c);
 
-    void SetStartPos(std::string pos);
-    void SetPlugs(std::string plugs);
+    void SetStartPos(std::string const& pos);
+    void SetPlugs(std::string const& plugs);
 
     void Print() const;
 private:
     void Rotate();
-    std::vector<Plug> plugs;
+    char PlugChange(char c);
     std::vector<Rotor> rotors;
+    std::vector<Plug> plugs;
     Rotor reflector;
 };
 
