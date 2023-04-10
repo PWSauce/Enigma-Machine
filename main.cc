@@ -4,49 +4,64 @@
 #include <vector>
 #include <algorithm>
 
-int main()
+using namespace std;
+
+string encode(string message, Interface m)
 {
-    //                           ABCDEFGHIJKLMNOPQRSTUVWXYZ
+    return m.EncodeMessage(message);
+}
+
+void menu()
+{
     std::vector<Rotor> r {Rotor{"EKMFLGDQVZNTOWYHXUSPAIBRCJ", 'A'}, 
                           Rotor{"AJDKSIRUXBLHWTMCQGZNPYFVOE", 'A'}, 
                           Rotor{"BDFHJLCPRTXVZNYEIWGAKMUSQO", 'A'}};
 
-                    Rotor refl {"YRUHQSLDPXNGOKMIEBFZCWVJAT", 'A'};
+    Rotor refl {"YRUHQSLDPXNGOKMIEBFZCWVJAT", 'A'};
 
-    Interface m1 {r, refl};
-    Interface m2 {r, refl};
-
-    std::string c{};
-    std::string plugs{};
+    char input{};
     std::string message{};
-    std::string decoded{};
+    Interface m{r, refl};
 
-    std::cout << "Write rotor start positions: " << std::endl;
-    std::cin >> c;
-    m1.SetStartPos(c);
-
-    std::cout << "Write plugs in AB format separated with blankspaces:" << std::endl;
-    std::cin >> plugs;
-    std::getline(std::cin, c, '\n');
-    plugs += c;
-    m1.SetPlugs(plugs);
-    
-    std::cout << "Write messsage: " << std::endl;
-    std::cin >> message;
-    std::getline(std::cin, c, '\n');
-    message += c;
-
-    c.clear();
-    for (auto a : message)
+    while(true)
     {
-        if (a != ' ')
-            c += m1.Encode(a);
-        else
-            c += ' ';
+        cout << "Choose a menu option" << endl;
+        cout << "----------------------" << endl;
+        cout << "Current rotor positions: " << m.PrintPositions() << endl;
+        cout << "Current plugs: " << m.PrintPlugs() << endl;
+        cout << "------------------------------" << endl;
+        cout << "1. Set rotor positions" << endl;
+        cout << "2. Set plugs" << endl;
+        cout << "3. Encode message" << endl;
+        cout << "4. Exit" << endl;
+        cout << "Choice: ";
+        cin >> input;
+
+        if (input == '1')
+        {
+            m.SetStartPos();
+        }
+        if (input == '2')
+        {
+            m.SetPlugs();
+        }
+        if (input == '3')
+        {
+            cout << "Write message to encode: ";
+            cin >> message;
+            message = encode(message, m);
+            cout << "Encoded message: " << message << endl;
+        }
+        if (input == '4')
+        {
+            break;
+        }
     }
-    
-    std::cout << std::endl;
-    std::cout << c << std::endl;
+}
+
+int main()
+{
+    menu();
 
     return 0;
 }

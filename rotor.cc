@@ -43,7 +43,7 @@ char Rotor::Encode(char in)
 
 char Rotor::EncodeBack(char in)
 {
-    size_t idx{};
+    int idx{};
     char a{};
     int position{pos - 'A'};
 
@@ -56,7 +56,7 @@ char Rotor::EncodeBack(char in)
     else
         a = in + position;
     
-    for (; idx < out.size(); ++idx)
+    for (; idx < static_cast<int>(out.size()); ++idx)
     {
         if (out.at(idx) == a)
         {
