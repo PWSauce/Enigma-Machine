@@ -1,6 +1,5 @@
 #include "plug.h"
 #include <string>
-#include <iostream>
 
 Plug::Plug()
     : a(), b()
@@ -10,7 +9,7 @@ Plug::Plug(char a_conn, char b_conn)
     : a(a_conn), b(b_conn)
 {}
 
-Plug::Plug(std::string connections)
+Plug::Plug(std::string const& connections)
     : a(), b()
 {
     a = connections.at(0);

@@ -14,6 +14,6 @@ struct RotorTypes
                                     Rotor{"JPGVOUMFYQBENHZRDKASXLICTW", 'Z'},
                                     Rotor{"NZJHGRCXMYSWBOUFAIVLPEKQDT", 'Z'}, 
                                     Rotor{"FKQHTLXOCBJSPDZRAMEWNIUYGV", 'Z'}};
-} Rotor_Types;
+};
 
 #endif // ROTOR_TYPES_H

@@ -1,11 +1,11 @@
 #include "rotor.h"
 #include <iostream>
 
-Rotor::Rotor(std::string out, char notch)
+Rotor::Rotor(std::string const& out, char notch)
     : out(out), pos('A'), notch(notch)
 {}
 
-Rotor::Rotor(std::string out, char pos, char notch)
+Rotor::Rotor(std::string const& out, char pos, char notch)
     : out(out), pos(pos), notch(notch)
 {}
 
