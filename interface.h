@@ -14,8 +14,6 @@ public:
 
     char Encode(char c);
 
-    void SetStartPos();
-    void SetPlugs();
     std::string EncodeMessage(std::string const& message);
 
     void Menu();
@@ -25,7 +23,11 @@ private:
     std::string PrintPositions() const;
     std::string PrintPlugs() const;
     void Rotate();
-    
+
+    void SetStartPos();
+    void SetPlugs();
+    void SetRotors();
+
     std::vector<Rotor> rotors;
     std::vector<Plug> plugs;
     Rotor reflector {"YRUHQSLDPXNGOKMIEBFZCWVJAT"};
