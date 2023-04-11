@@ -64,41 +64,7 @@ char Interface::Encode(char a)
     return a;
 }
 
-void Interface::SetStartPos()
-{
-    int idx{};
-    std::string text{};
-    std::cout << "Write rotor start positions: " << std::endl;
-    std::cin >> text;
-
-    for (char c : text)
-    {
-        rotors.at(idx).SetPosition(c);
-        ++idx;
-    }
-    
-}
-
-void Interface::SetPlugs()
-{
-    std::string pl{};
-    std::string c{};
-
-    std::cout << "Write plugs in AB format separated with blankspaces:" << std::endl;
-    std::cin >> pl;
-    std::getline(std::cin, c, '\n');
-    pl += c;
-
-    std::stringstream ss {pl};
-    std::string p {};
-
-    while(getline(ss, p, ' '))
-    {
-        plugs.push_back(Plug(p.at(0), p.at(1)));
-    }
-}
-
- std::string Interface::EncodeMessage(std::string const& message)
+std::string Interface::EncodeMessage(std::string const& message)
  {
     std::string c{};
     for (auto a : message)
@@ -124,37 +90,11 @@ void Interface::Menu()
 {
     std::string input{};
 
-    std::cout << "Choose 3 rotors to use" << std::endl;
-    RotorTypes ro{};
-    int i{};
+    SetRotors();
 
-    for (auto const& a : ro.rotor_Types)
-    {
-        ++i;
-        std::cout << i << ". " << a.Cipher() << std::endl;
-    }
-
-    std::cout << "Right most choice: ";
-    std::cin >> i;
-    rotors.push_back(ro.rotor_Types.at(i - 1));
-
-    std::cout << "Middle choice: ";
-    std::cin >> i;
-    rotors.push_back(ro.rotor_Types.at(i - 1));
-
-    std::cout << "Left most choice: ";
-    std::cin >> i;
-    rotors.push_back(ro.rotor_Types.at(i - 1));
-
-    std::cout << "Rotors chosen: " << std::endl;
-    for (auto const& c : rotors)
-    {
-        std::cout << c.Cipher() << std::endl;
-    }
-
+    std::cout << "Welcome to the enigma machine!" << std::endl;
     while(true)
     {
-        std::cout << "Welcome to the enigma machine!" << std::endl;
         std::cout << "------------------------------" << std::endl;
         std::cout << "Current rotor positions: " << PrintPositions() << std::endl;
         std::cout << "Current plugs:           " << PrintPlugs() << std::endl;
@@ -178,13 +118,12 @@ void Interface::Menu()
             input += in;
             std::stringstream ss {input};
 
-            std::cout << input << std::endl;
             in.clear();
             while (getline(ss, input, ' '))
             {
                 in += ' ' + EncodeMessage(input);
             }
-            std::cout << "Encoded message: " << in << std::endl;
+            std::cout << "Encoded message: " << in << std::endl << std::endl;
         }
         if (input == "2")
         {
@@ -197,27 +136,7 @@ void Interface::Menu()
         else if (input == "4")
         {
             std::cout << "Choose 3 rotors to use" << std::endl;
-            RotorTypes ro{};
-            int i{};
-
-            for (auto const& a : ro.rotor_Types)
-            {
-                ++i;
-                std::cout << i << ". " << a.Cipher() << std::endl;
-            }
-
-            std::cout << "Right most choice: ";
-            std::cin >> i;
-            rotors.push_back(ro.rotor_Types.at(i - 1));
-
-            std::cout << "Middle choice: ";
-            std::cin >> i;
-            rotors.push_back(ro.rotor_Types.at(i - 1));
-
-            std::cout << "Left most choice: ";
-            std::cin >> i;
-            rotors.push_back(ro.rotor_Types.at(i - 1));
-
+            SetRotors();
             std::cout << "Rotors chosen: " << std::endl;
             for (auto const& c : rotors)
             {
@@ -261,4 +180,63 @@ std::string Interface::PrintPlugs() const
     }
 
     return p;
+}
+
+void Interface::SetStartPos()
+{
+    int idx{};
+    std::string text{};
+    std::cout << "Write rotor start positions: " << std::endl;
+    std::cin >> text;
+
+    for (char c : text)
+    {
+        rotors.at(idx).SetPosition(c);
+        ++idx;
+    }
+    
+}
+
+void Interface::SetPlugs()
+{
+    std::string pl{};
+    std::string c{};
+
+    std::cout << "Write plugs in AB format separated with blankspaces:" << std::endl;
+    std::cin >> pl;
+    std::getline(std::cin, c, '\n');
+    pl += c;
+
+    std::stringstream ss {pl};
+    std::string p {};
+
+    while(getline(ss, p, ' '))
+    {
+        plugs.push_back(Plug(p.at(0), p.at(1)));
+    }
+}
+
+void Interface::SetRotors()
+{
+    rotors.clear();
+    RotorTypes ro{};
+    int i{};
+
+    for (auto const& a : ro.rotor_Types)
+    {
+        ++i;
+        std::cout << i << ". " << a.Cipher() << std::endl;
+    }
+
+    std::cout << "Left most rotor: ";
+    std::cin >> i;
+    rotors.push_back(ro.rotor_Types.at(i - 1));
+
+    std::cout << "Middle rotor: ";
+    std::cin >> i;
+    rotors.push_back(ro.rotor_Types.at(i - 1));
+
+    std::cout << "Right most rotor: ";
+    std::cin >> i;
+    rotors.push_back(ro.rotor_Types.at(i - 1));
 }

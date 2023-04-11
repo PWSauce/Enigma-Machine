@@ -14,18 +14,20 @@ public:
 
     char Encode(char c);
 
-    void SetStartPos();
-    void SetPlugs();
     std::string EncodeMessage(std::string const& message);
 
     void Menu();
 
     void Print() const;
+private:
     std::string PrintPositions() const;
     std::string PrintPlugs() const;
-    std::string Rotor_Types() const;
-private:
     void Rotate();
+
+    void SetStartPos();
+    void SetPlugs();
+    void SetRotors();
+
     std::vector<Rotor> rotors;
     std::vector<Plug> plugs;
     Rotor reflector {"YRUHQSLDPXNGOKMIEBFZCWVJAT"};
