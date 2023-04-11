@@ -6,8 +6,8 @@
 class Rotor
 {
 public:
-    Rotor(std::string out);
-    Rotor(std::string out, char pos);
+    Rotor(std::string out, char notch);
+    Rotor(std::string out, char pos, char notch);
 
     bool Rotate();
     char Encode(char in);
@@ -20,6 +20,7 @@ public:
 private:
     std::string const out;
     char pos;
+    char notch;
 };
 
 #endif // ROTOR_H

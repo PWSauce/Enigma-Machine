@@ -30,7 +30,7 @@ private:
 
     std::vector<Rotor> rotors;
     std::vector<Plug> plugs;
-    Rotor reflector {"YRUHQSLDPXNGOKMIEBFZCWVJAT"};
+    Rotor reflector {"YRUHQSLDPXNGOKMIEBFZCWVJAT", 'A'};
 };
 
 #endif // INTERFACE_H

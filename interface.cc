@@ -4,6 +4,7 @@
 #include <string>
 #include <sstream>
 #include <iostream>
+#include <iterator>
 
 Interface::Interface()
     : rotors(), plugs()

@@ -1,23 +1,26 @@
 #include "rotor.h"
 #include <iostream>
 
-Rotor::Rotor(std::string out)
-    : out(out), pos('A')
+Rotor::Rotor(std::string out, char notch)
+    : out(out), pos('A'), notch(notch)
 {}
 
-Rotor::Rotor(std::string out, char pos)
-    : out(out), pos(pos)
+Rotor::Rotor(std::string out, char pos, char notch)
+    : out(out), pos(pos), notch(notch)
 {}
 
 bool Rotor::Rotate()
 {
     if (pos == 'Z')
-    {
         pos = 'A';
+    else
+        pos++;
+
+    if (pos == notch)
+    {
         return true;
     }
 
-    pos++;
     return false;
 }
 

@@ -6,14 +6,14 @@
 
 struct RotorTypes
 {
-    std::vector<Rotor> rotor_Types {Rotor{"EKMFLGDQVZNTOWYHXUSPAIBRCJ"}, 
-                                    Rotor{"AJDKSIRUXBLHWTMCQGZNPYFVOE"}, 
-                                    Rotor{"BDFHJLCPRTXVZNYEIWGAKMUSQO"},
-                                    Rotor{"ESOVPZJAYQUIRHXLNFTGKDCMWB"}, 
-                                    Rotor{"VZBRGITYUPSDNHLXAWMJQOFECK"}, 
-                                    Rotor{"JPGVOUMFYQBENHZRDKASXLICTW"},
-                                    Rotor{"NZJHGRCXMYSWBOUFAIVLPEKQDT"}, 
-                                    Rotor{"FKQHTLXOCBJSPDZRAMEWNIUYGV"}};
+    std::vector<Rotor> rotor_Types {Rotor{"EKMFLGDQVZNTOWYHXUSPAIBRCJ", 'Q'}, 
+                                    Rotor{"AJDKSIRUXBLHWTMCQGZNPYFVOE", 'E'}, 
+                                    Rotor{"BDFHJLCPRTXVZNYEIWGAKMUSQO", 'V'},
+                                    Rotor{"ESOVPZJAYQUIRHXLNFTGKDCMWB", 'J'}, 
+                                    Rotor{"VZBRGITYUPSDNHLXAWMJQOFECK", 'Z'}, 
+                                    Rotor{"JPGVOUMFYQBENHZRDKASXLICTW", 'Z'},
+                                    Rotor{"NZJHGRCXMYSWBOUFAIVLPEKQDT", 'Z'}, 
+                                    Rotor{"FKQHTLXOCBJSPDZRAMEWNIUYGV", 'Z'}};
 } Rotor_Types;
 
 #endif // ROTOR_TYPES_H
