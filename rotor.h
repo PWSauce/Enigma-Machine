@@ -6,6 +6,7 @@
 class Rotor
 {
 public:
+    Rotor(std::string out);
     Rotor(std::string out, char pos);
 
     bool Rotate();
@@ -15,6 +16,7 @@ public:
     void SetPosition(char pos);
 
     void Print() const;
+    std::string Cipher() const;
 private:
     std::string const out;
     char pos;

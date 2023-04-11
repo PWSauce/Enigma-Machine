@@ -61,7 +61,17 @@ void menu()
 
 int main()
 {
-    menu();
+    std::vector<Rotor> rotor_Types {Rotor{"EKMFLGDQVZNTOWYHXUSPAIBRCJ"}, 
+                                    Rotor{"AJDKSIRUXBLHWTMCQGZNPYFVOE"}, 
+                                    Rotor{"BDFHJLCPRTXVZNYEIWGAKMUSQO"},
+                                    Rotor{"ESOVPZJAYQUIRHXLNFTGKDCMWB"}, 
+                                    Rotor{"VZBRGITYUPSDNHLXAWMJQOFECK"}, 
+                                    Rotor{"JPGVOUMFYQBENHZRDKASXLICTW"},
+                                    Rotor{"NZJHGRCXMYSWBOUFAIVLPEKQDT"}, 
+                                    Rotor{"FKQHTLXOCBJSPDZRAMEWNIUYGV"}};
+                                    
+    Interface m {};
+    m.Menu();
 
     return 0;
 }

@@ -1,6 +1,10 @@
 #include "rotor.h"
 #include <iostream>
 
+Rotor::Rotor(std::string out)
+    : out(out), pos('A')
+{}
+
 Rotor::Rotor(std::string out, char pos)
     : out(out), pos(pos)
 {}
@@ -89,4 +93,9 @@ void Rotor::SetPosition(char p)
 void Rotor::Print() const
 {
     std::cout << out << std::endl;
+}
+
+std::string Rotor::Cipher() const
+{
+    return out;
 }

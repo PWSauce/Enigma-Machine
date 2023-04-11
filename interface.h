@@ -8,6 +8,7 @@
 class Interface
 {
 public:
+    Interface();
     Interface(std::vector<Rotor> const& rotors, Rotor const& refl);
     Interface(std::vector<Rotor> const& rotors, std::vector<Plug> const& plugs, Rotor const& refl);
 
@@ -17,14 +18,17 @@ public:
     void SetPlugs();
     std::string EncodeMessage(std::string const& message);
 
+    void Menu();
+
     void Print() const;
     std::string PrintPositions() const;
     std::string PrintPlugs() const;
+    std::string Rotor_Types() const;
 private:
     void Rotate();
     std::vector<Rotor> rotors;
     std::vector<Plug> plugs;
-    Rotor reflector;
+    Rotor reflector {"YRUHQSLDPXNGOKMIEBFZCWVJAT"};
 };
 
 #endif // INTERFACE_H

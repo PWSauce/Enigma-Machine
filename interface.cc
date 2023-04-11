@@ -1,8 +1,13 @@
 #include "interface.h"
+#include "rotor_types.h"
 #include <vector>
 #include <string>
 #include <sstream>
 #include <iostream>
+
+Interface::Interface()
+    : rotors(), plugs()
+{}
 
 Interface::Interface(std::vector<Rotor> const& rotors, Rotor const& refl)
     : rotors(rotors), plugs(), reflector(refl)
@@ -111,6 +116,117 @@ void Interface::Rotate()
         if (rotors.at(1).Rotate())
         {
             rotors.at(0).Rotate();
+        }
+    }
+}
+
+void Interface::Menu()
+{
+    std::string input{};
+
+    std::cout << "Choose 3 rotors to use" << std::endl;
+    RotorTypes ro{};
+    int i{};
+
+    for (auto const& a : ro.rotor_Types)
+    {
+        ++i;
+        std::cout << i << ". " << a.Cipher() << std::endl;
+    }
+
+    std::cout << "Right most choice: ";
+    std::cin >> i;
+    rotors.push_back(ro.rotor_Types.at(i - 1));
+
+    std::cout << "Middle choice: ";
+    std::cin >> i;
+    rotors.push_back(ro.rotor_Types.at(i - 1));
+
+    std::cout << "Left most choice: ";
+    std::cin >> i;
+    rotors.push_back(ro.rotor_Types.at(i - 1));
+
+    std::cout << "Rotors chosen: " << std::endl;
+    for (auto const& c : rotors)
+    {
+        std::cout << c.Cipher() << std::endl;
+    }
+
+    while(true)
+    {
+        std::cout << "Welcome to the enigma machine!" << std::endl;
+        std::cout << "------------------------------" << std::endl;
+        std::cout << "Current rotor positions: " << PrintPositions() << std::endl;
+        std::cout << "Current plugs:           " << PrintPlugs() << std::endl;
+        std::cout << "------------------------" << std::endl;
+        std::cout << "Choose an option from the menu." << std::endl;
+        std::cout << "1. Encode/Decode a message." << std::endl;
+        std::cout << "2. Set rotor positions." << std::endl;
+        std::cout << "3. Set plugs." << std::endl;
+        std::cout << "4. Choose rotors." << std::endl;
+        std::cout << "5. Exit" << std::endl;
+
+        std::cout << "Choice: ";
+        std::cin >> input;
+
+        if (input == "1")
+        {
+            std::cout << "Write message to encode: ";
+            std::cin >> input;
+            std::string in;
+            std::getline(std::cin, in, '\n');
+            input += in;
+            std::stringstream ss {input};
+
+            std::cout << input << std::endl;
+            in.clear();
+            while (getline(ss, input, ' '))
+            {
+                in += ' ' + EncodeMessage(input);
+            }
+            std::cout << "Encoded message: " << in << std::endl;
+        }
+        if (input == "2")
+        {
+            SetStartPos();
+        }
+        else if (input == "3")
+        {
+            SetPlugs();
+        }
+        else if (input == "4")
+        {
+            std::cout << "Choose 3 rotors to use" << std::endl;
+            RotorTypes ro{};
+            int i{};
+
+            for (auto const& a : ro.rotor_Types)
+            {
+                ++i;
+                std::cout << i << ". " << a.Cipher() << std::endl;
+            }
+
+            std::cout << "Right most choice: ";
+            std::cin >> i;
+            rotors.push_back(ro.rotor_Types.at(i - 1));
+
+            std::cout << "Middle choice: ";
+            std::cin >> i;
+            rotors.push_back(ro.rotor_Types.at(i - 1));
+
+            std::cout << "Left most choice: ";
+            std::cin >> i;
+            rotors.push_back(ro.rotor_Types.at(i - 1));
+
+            std::cout << "Rotors chosen: " << std::endl;
+            for (auto const& c : rotors)
+            {
+                std::cout << c.Cipher() << std::endl;
+            }
+        }
+        else if (input == "5")
+        {
+            break;
         }
     }
 }
