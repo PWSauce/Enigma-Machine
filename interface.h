@@ -21,11 +21,11 @@ public:
     void Menu();
 
     void Print() const;
+private:
     std::string PrintPositions() const;
     std::string PrintPlugs() const;
-    std::string Rotor_Types() const;
-private:
     void Rotate();
+    
     std::vector<Rotor> rotors;
     std::vector<Plug> plugs;
     Rotor reflector {"YRUHQSLDPXNGOKMIEBFZCWVJAT"};
