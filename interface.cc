@@ -90,33 +90,7 @@ void Interface::Menu()
 {
     std::string input{};
 
-    std::cout << "Choose 3 rotors to use" << std::endl;
-    RotorTypes ro{};
-    int i{};
-
-    for (auto const& a : ro.rotor_Types)
-    {
-        ++i;
-        std::cout << i << ". " << a.Cipher() << std::endl;
-    }
-
-    std::cout << "Right most choice: ";
-    std::cin >> i;
-    rotors.push_back(ro.rotor_Types.at(i - 1));
-
-    std::cout << "Middle choice: ";
-    std::cin >> i;
-    rotors.push_back(ro.rotor_Types.at(i - 1));
-
-    std::cout << "Left most choice: ";
-    std::cin >> i;
-    rotors.push_back(ro.rotor_Types.at(i - 1));
-
-    std::cout << "Rotors chosen: " << std::endl;
-    for (auto const& c : rotors)
-    {
-        std::cout << c.Cipher() << std::endl;
-    }
+    SetRotors();
 
     std::cout << "Welcome to the enigma machine!" << std::endl;
     while(true)
@@ -254,15 +228,15 @@ void Interface::SetRotors()
         std::cout << i << ". " << a.Cipher() << std::endl;
     }
 
-    std::cout << "Right most choice: ";
+    std::cout << "Left most rotor: ";
     std::cin >> i;
     rotors.push_back(ro.rotor_Types.at(i - 1));
 
-    std::cout << "Middle choice: ";
+    std::cout << "Middle rotor: ";
     std::cin >> i;
     rotors.push_back(ro.rotor_Types.at(i - 1));
 
-    std::cout << "Left most choice: ";
+    std::cout << "Right most rotor: ";
     std::cin >> i;
     rotors.push_back(ro.rotor_Types.at(i - 1));
 }
